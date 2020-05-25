@@ -3,6 +3,8 @@
 
 #[macro_use]
 extern crate rocket;
+extern crate diesel;
+extern crate dotenv;
 
 mod models;
 mod router;
