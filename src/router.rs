@@ -1,8 +1,8 @@
 use rocket_contrib::json::Json;
 use crate::models::Todo;
-use crate::connect::DbConn;
-use crate::query::*;
-use crate::schema::*;
+// use connect::DbConn;
+// use query::*;
+// use schema::*;
 
 #[get("/")]
 pub fn index() -> &'static str {
@@ -10,8 +10,7 @@ pub fn index() -> &'static str {
 }
 
 #[get("/todos")]
-pub fn todos(connection: DbConn) -> Json<Vec<Todo>> {
-  
+pub fn todos() -> Json<Vec<Todo>> {
   Json(vec![Todo{
     id: 1,
     title: "test1".into(),
@@ -19,7 +18,6 @@ pub fn todos(connection: DbConn) -> Json<Vec<Todo>> {
     done: false,
   }])
 }
-
 
 #[post("/todos", data = "<todo>")]
 pub fn new_todo(todo: Json<Todo>) -> String {

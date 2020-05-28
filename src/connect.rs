@@ -15,7 +15,7 @@ pub fn init_pool() -> Pool {
 }
 
 fn database_url() -> String {
-    env::var("postgres://postgres:postgres@localhost:5433").expect("DATABASE_URL must be set")
+    env::var("DATABASE_URL").expect("DATABASE_URL must be set")
 }
 
 pub struct DbConn(pub r2d2::PooledConnection<ConnectionManager<PgConnection>>);

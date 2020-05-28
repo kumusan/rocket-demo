@@ -4,14 +4,14 @@
 #[macro_use]
 extern crate rocket;
 extern crate diesel;
-extern crate dotenv;
 
-mod models;
-mod router;
-
+pub mod models;
+pub mod connect;
+pub mod router;
 use router::*;
 
 fn main() {
+    connect::init_pool();
     rocket::ignite()
         .mount("/", routes![index, todos, new_todo])
         .launch();
