@@ -11,7 +11,7 @@ pub mod router;
 use router::*;
 
 fn main() {
-    connect::init_pool();
+    connect::connect_init();
     rocket::ignite()
         .mount("/", routes![index, todos, new_todo])
         .launch();
