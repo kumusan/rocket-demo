@@ -31,3 +31,8 @@ pub fn new_todo(todo: Json<Todo>) -> String {
 //   };
 //   format!("{:?}, todo")
 // }
+
+#[test]
+fn route_test() {
+  assert_eq!(index(), "hello wasm rocket!");
+}
