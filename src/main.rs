@@ -5,8 +5,8 @@
 extern crate rocket;
 extern crate diesel;
 
-pub mod models;
 pub mod connect;
+pub mod models;
 pub mod router;
 use router::*;
 

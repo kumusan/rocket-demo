@@ -1,5 +1,5 @@
-use rocket_contrib::json::Json;
 use crate::models::Todo;
+use rocket_contrib::json::Json;
 // use connect::DbConn;
 // use query::*;
 // use schema::*;
@@ -11,7 +11,7 @@ pub fn index() -> &'static str {
 
 #[get("/todos")]
 pub fn todos() -> Json<Vec<Todo>> {
-  Json(vec![Todo{
+  Json(vec![Todo {
     id: 1,
     title: "test1".into(),
     body: "これはテストです".into(),

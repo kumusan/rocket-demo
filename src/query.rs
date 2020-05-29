@@ -1,7 +1,7 @@
 use diesel;
 use diesel::prelude::*;
-use schema::*;
 use models::Todo;
+use schema::*;
 
 pub fn all(connection: &PgConnection) -> QueryResult<Vec<Todo>> {
     schema::diesel::todos::table.load::<Todo>(&*connection)
@@ -24,6 +24,5 @@ pub fn update(id: i32, Todo: Todo, connection: &PgConnection) -> QueryResult<Tod
 }
 
 pub fn delete(id: i32, connection: &PgConnection) -> QueryResult<usize> {
-    diesel::delete(todos::table.find(id))
-        .execute(connection)
+    diesel::delete(todos::table.find(id)).execute(connection)
 }
