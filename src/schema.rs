@@ -1,6 +1,4 @@
-extern crate diesel;
-
-diesel::table! {
+table! {
     pub todos (id) {
         id -> Int4,
         title -> Varchar,
@@ -9,4 +7,6 @@ diesel::table! {
     }
 }
 
-diesel::allow_tables_to_appear_in_same_query!(todos);
+allow_tables_to_appear_in_same_query!(
+    todos,
+);
