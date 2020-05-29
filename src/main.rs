@@ -3,11 +3,14 @@
 
 #[macro_use]
 extern crate rocket;
+#[macro_use]
 extern crate diesel;
 
-pub mod connect;
-pub mod models;
-pub mod router;
+mod connect;
+mod models;
+mod router;
+mod schema;
+mod query;
 use router::*;
 
 fn main() {
