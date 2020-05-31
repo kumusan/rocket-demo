@@ -6,11 +6,11 @@ extern crate rocket;
 #[macro_use]
 extern crate diesel;
 
-mod connect;
-mod models;
-mod router;
-mod schema;
-mod query;
+pub mod connect;
+pub mod models;
+pub mod router;
+pub mod schema;
+pub mod query;
 use router::*;
 
 fn main() {
