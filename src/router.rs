@@ -1,6 +1,5 @@
 use crate::models::Todo;
 use rocket_contrib::json::Json;
-use crate::query::*;
 
 #[get("/")]
 pub fn index() -> &'static str {
