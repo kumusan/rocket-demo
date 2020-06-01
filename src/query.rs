@@ -1,31 +1,27 @@
 use diesel::*;
 use crate::models::*;
-// use crate::schema::todos;
+use crate::schema::todos::dsl::*;
 use crate::connect::connect_init;
 #[cfg(test)]
 use diesel::debug_query;
-// use diesel::select;
+use diesel::insert_into;
+use diesel::pg::Pg;
 
-mod schema {
-    table! {
-    pub todos (id) {
-        id -> Int4,
-        title -> Varchar,
-        body -> Text,
-        done -> Bool,
-    }
-}
+#[test]
+pub fn insert_test() {
+    let query = insert_into(todos).default_values();
+    let sql = "INSERT INTO \"todos\" DEFAULT VALUES -- binds: []";
+    assert_eq!(sql, debug_query::<Pg, _>(&query).to_string());
 }
 
 #[test]
-pub fn query_test() { //-> Result<QueryResult<Vec<Todo>>, Err> {
-    // todos::table.load::<Todo>(&*connection)
-    use schema::todos::dsl::*;
+pub fn get_all() { //-> Result<QueryResult<Vec<Todo>>, Err> {
     let connection = connect_init();
-    connection.execute("SELECT * FROM todos").unwrap();
-    assert_eq!(
-        Ok(Todo::new(1, " new title", "new text")), 
-        todos.find(1).first(&connection));
+    // insert_into(todos).values(Todo::new(1, "new title", "new text", false)).execute(&connection).unwrap();
+    // すでにinsertしているためErrが返ってくる
+    let db_load = todos.load::<Todo>(&connection).unwrap();
+    let test_todo = vec![Todo { id: 1, title: "new title".to_string(), body: "new text".to_string(), done: false }];
+    assert_eq!(test_todo, db_load);
 }
 // pub fn all(connection: &PgConnection) {
 //     let results = todos
