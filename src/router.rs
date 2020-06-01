@@ -7,19 +7,20 @@ pub fn index() -> &'static str {
 }
 
 #[get("/todos")]
-pub fn todos() -> Json<Vec<Todo>> {
-  Json(vec![Todo {
-    id: 1,
-    title: "test1".into(),
-    body: "これはテストです".into(),
-    done: false,
-  }])
+pub fn todos() {//-> Json<Vec<Todo>> {
+  // Json(vec![Todo {
+  //   id: 1,
+  //   title: "test1".into(),
+  //   body: "これはテストです".into(),
+  //   done: false,
+  // }])
+  println!("test")
 }
 
-#[post("/todos", data = "<todo>")]
-pub fn new_todo(todo: Json<Todo>) -> String {
-  format!("post {:?}", todo.0)
-}
+// #[post("/todos", data = "<todo>")]
+// pub fn new_todo(todo: Json<Todo>) -> String {
+//   format!("post {:?}", todo.0)
+// }
 
 // #[get("/todos/<id>")]
 // pub fn get_id(id: u32) -> String {

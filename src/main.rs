@@ -16,14 +16,6 @@ use router::*;
 fn main() {
     connect::connect_init();
     rocket::ignite()
-        .mount("/", routes![index, todos, new_todo])
+        .mount("/", routes![index, todos])
         .launch();
 }
-
-// db操作できるならpostでtodo追加
-// getでlist返す
-// modelsに型追加？
-
-// id指定でselect
-
-// フロント側はめんどくさいからやらない
