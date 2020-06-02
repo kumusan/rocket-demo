@@ -17,8 +17,8 @@ pub fn insert_test() {
 #[test]
 pub fn get_all() { //-> Result<QueryResult<Vec<Todo>>, Err> {
     let connection = connect_init();
-    // insert_into(todos).values(Todo::new(1, "new title", "new text", false)).execute(&connection).unwrap();
-    // すでにinsertしているためErrが返ってくる
+    insert_into(todos).values(Todo::new(1, "new title", "new text", false)).execute(&connection).unwrap();
+    // ローカルならErrが返ってくる
     let db_load = todos.load::<Todo>(&connection).unwrap();
     let test_todo = vec![Todo { id: 1, title: "new title".to_string(), body: "new text".to_string(), done: false }];
     assert_eq!(test_todo, db_load);
