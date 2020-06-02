@@ -36,7 +36,6 @@ jobs:
             components: rustfmt, clippy
       
       - name: diesel install
-        uses: actions-rs/cargo@v1
         run: install diesel_cli
 
       - name: diesel migration
