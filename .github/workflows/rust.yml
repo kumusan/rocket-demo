@@ -10,10 +10,21 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+
   test:
     name: rocket-test
     runs-on: ubuntu-latest
-
+    services:
+      postgres:
+        image: postgres
+        ports: ["5433:5432"]
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v2
       - name: latest nightly
