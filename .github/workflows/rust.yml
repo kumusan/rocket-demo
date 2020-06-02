@@ -40,6 +40,8 @@ jobs:
 
       - name: diesel migration
         run: diesel migration run
+        env: 
+          DATABASE_URL: postgres://postgres:postgres@localhost:5433
 
       - name: Run cargo test 
         uses: actions-rs/cargo@v1
