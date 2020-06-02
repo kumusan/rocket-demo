@@ -37,16 +37,7 @@ pub fn get_all() {
 #[test]
 pub fn select_test() {
     let connection = connect_init();
-    insert_into(todos)
-        .values(
-            vec![
-                Todo::new(1, "new title", "new text", false), 
-                Todo::new(2, "test2", "test2", false)
-            ]
-        )
-        .execute(&connection).unwrap();
-    let select = todos.select((id, title, body, done));
-    let db_load = select.load(&connection).unwrap();
+    let db_load = todos.filter(id.eq(1)).load(&connection).unwrap();
     let test_todo = vec![Todo {id: 1, title: "new title".to_string(), body: "new text".to_string(), done: false}];
     assert_eq!(test_todo, db_load);
 }
