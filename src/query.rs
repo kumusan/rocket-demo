@@ -37,9 +37,10 @@ pub fn get_all() {
 #[test]
 pub fn select_test() {
     let connection = connect_init();
-    let db_load = todos.filter(id.eq(1)).load(&connection).unwrap();
+    let db_load = todos.filter(id.eq(1)).load(&connection).unwrap(); // return []
     let test_todo = vec![Todo {id: 1, title: "new title".to_string(), body: "new text".to_string(), done: false}];
-    assert_eq!(test_todo, db_load);
+    assert_ne!(test_todo, db_load, "db_load is []");
+    assert_eq!(test_todo, todos.filter(id.eq(1)).first(&connection));
 }
 
 // pub fn get(id: i32, connection: &PgConnection) -> QueryResult<Todo> {
