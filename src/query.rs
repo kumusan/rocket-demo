@@ -40,7 +40,8 @@ pub fn select_test() {
     let db_load = todos.filter(id.eq(1)).load(&connection).unwrap(); // return []
     let test_todo = vec![Todo {id: 1, title: "new title".to_string(), body: "new text".to_string(), done: false}];
     assert_ne!(test_todo, db_load, "db_load is []");
-    assert_eq!(test_todo, todos.filter(id.eq(1)).first(&connection));
+    let test_todo = Todo::new(1, "new title", "new text", false);
+    assert_eq!(Ok(test_todo), todos.filter(id.eq(1)).first(&connection));
 }
 
 // pub fn get(id: i32, connection: &PgConnection) -> QueryResult<Todo> {
