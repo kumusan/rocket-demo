@@ -3,12 +3,13 @@
 // #[derive(Debug, Serialize, Deserialize, Queryable)]
 use diesel::*;
 use super::schema::todos;
+use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "postgres")]
 include!("schema.rs");
 
 #[derive(
-    PartialEq, Eq, Debug, Clone, Queryable, Identifiable, Insertable, AsChangeset, QueryableByName,
+    PartialEq, Eq, Debug, Clone, Queryable, Identifiable, Insertable, AsChangeset, QueryableByName, Deserialize, Serialize
 )]
 #[table_name = "todos"]
 pub struct Todo {
