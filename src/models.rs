@@ -1,6 +1,3 @@
-// use serde::{Deserialize, Serialize};
-
-// #[derive(Debug, Serialize, Deserialize, Queryable)]
 use diesel::*;
 use super::schema::todos;
 use serde::{Deserialize, Serialize};
