@@ -16,6 +16,6 @@ use router::*;
 fn main() {
     connect::connect_init();
     rocket::ignite()
-        .mount("/", routes![index, todos])
+        .mount("/", routes![index, all_todos, new_todo, get_id])
         .launch();
 }
