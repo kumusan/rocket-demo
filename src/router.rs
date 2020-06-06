@@ -1,4 +1,5 @@
 use crate::models::Todo;
+use crate::query::*;
 use rocket_contrib::json::Json;
 
 #[get("/")]
@@ -7,28 +8,27 @@ pub fn index() -> &'static str {
 }
 
 #[get("/todos")]
-pub fn todos() {//-> Json<Vec<Todo>> {
-  // Json(vec![Todo {
-  //   id: 1,
-  //   title: "test1".into(),
-  //   body: "これはテストです".into(),
-  //   done: false,
-  // }])
-  println!("test")
+pub fn all_todos() -> Json<Vec<Todo>> {
+  Json(all())
 }
 
-// #[post("/todos", data = "<todo>")]
-// pub fn new_todo(todo: Json<Todo>) -> String {
-//   format!("post {:?}", todo.0)
-// }
+#[post("/todos", data = "<todo>")]
+pub fn new_todo(todo: Json<Todo>) -> String {
+  let todo: Todo = Todo{
+    id: todo.id,
+    title: todo.title.to_string(),
+    body: todo.body.to_string(),
+    done: todo.done,
+  };
+  create(todo);
+  format!("ok")
+}
 
-// #[get("/todos/<id>")]
-// pub fn get_id(id: u32) -> String {
-//   let todo = Todo {
-//     id: id,
-//   };
-//   format!("{:?}, todo")
-// }
+#[get("/todo/<todoid>")]
+pub fn get_id(todoid: usize) -> Json<Vec<Todo>> {
+  let result = get(todoid);
+  Json(vec![result])
+}
 
 #[test]
 fn route_test() {
