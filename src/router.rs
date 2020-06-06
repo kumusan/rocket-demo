@@ -31,7 +31,7 @@ pub fn get_id(todoid: i32) -> Json<Vec<Todo>> {
 }
 
 #[post("/todos/<todoid>", data = "<todo>")]
-pub fn update_id(todoid: i32, todo: Json<Todo>) {
+pub fn update_id(todoid: i32, todo: Json<Todo>) -> String {
     let todo: Todo = Todo{
         id: todo.id,
         title: todo.title.to_string(),
@@ -39,11 +39,13 @@ pub fn update_id(todoid: i32, todo: Json<Todo>) {
         done: todo.done,
     };
     update(todoid, todo);
+    format!("ok")
 }
 
 #[delete("/todos/<todoid>")]
-pub fn delete_id(todoid: i32) {
+pub fn delete_id(todoid: i32) -> String {
     delete(todoid);
+    format!("ok")
 }
 
 #[test]
